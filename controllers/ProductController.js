@@ -6,9 +6,14 @@ const getProducts = async (req, res) => {
 }
 
 const getProductById = async (req, res) => {
-  if (req.params.id) {
-    let products = await Product.findById(req.params.id)
-    res.send(products)
+  try {
+    if (req.params.id) {
+      let products = await Product.findById(req.params.id)
+      res.send(products)
+    }
+  } catch (e) {
+    console.log(e)
+    console.log(e.name, e.message)
   }
 }
 
